@@ -22,6 +22,10 @@ contract_id, contract_interface = compiled_sol.popitem()
 bytecode = contract_interface['bin-runtime']
 abi = contract_interface['abi']
 
+#diagnostics
+print(abi)
+print(bytecode)
+
 W3 = Web3(WebsocketProvider('wss://ropsten.infura.io/ws/v3/%s'%infuraKey))
 account1=Account.from_key(privateKey);
 address1=account1.address
@@ -68,6 +72,8 @@ greeter = W3.eth.contract(
     address=tx_receipt.contractAddress,
     abi=abi
 )
+print("Output from greet()")
+print(greeter.functions.greet().call())
 
 nonce = W3.eth.getTransactionCount(address1)
 tx_dict = greeter.functions.setGreeting('Nihao').buildTransaction({
