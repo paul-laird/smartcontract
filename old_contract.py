@@ -37,6 +37,9 @@ address1=account1.address
 bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
 abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata'])['output']['abi']
 Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
+#diagnostics
+print(abi)
+print(bytecode)
 
 nonce = W3.eth.getTransactionCount(address1)
 tx_dict = Greeter.constructor().buildTransaction({
