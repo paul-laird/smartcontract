@@ -19,7 +19,7 @@ with open(".infura") as infurafile:
 
 compiled_sol = compile_source(contractText, output_values=["abi", "bin-runtime"])
 contract_id, contract_interface = compiled_sol.popitem()
-bytecode = contract_interface['bin']
+bytecode = contract_interface['bin-runtime']
 abi = contract_interface['abi']
 
 W3 = Web3(WebsocketProvider('wss://ropsten.infura.io/ws/v3/%s'%infuraKey))
