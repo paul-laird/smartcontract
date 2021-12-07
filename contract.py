@@ -17,7 +17,7 @@ with open(".pk") as pkfile:
 with open(".infura") as infurafile:
  infuraKey=infurafile.read()
 
-compiled_sol = compile_source(contractText)
+compiled_sol = compile_source(contractText, output_values=["abi", "bin-runtime"])
 contract_id, contract_interface = compiled_sol.popitem()
 bytecode = contract_interface['bin']
 abi = contract_interface['abi']
