@@ -64,6 +64,11 @@ if tx_receipt is None:
 
 print("Contract address is:",tx_receipt.contractAddress)
 
+greeter = W3.eth.contract(
+    address=tx_receipt.contractAddress,
+    abi=abi
+)
+
 nonce = W3.eth.getTransactionCount(address1)
 tx_dict = greeter.functions.setGreeting('Nihao').buildTransaction({
   'chainId': 3,
