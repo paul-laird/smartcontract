@@ -1,9 +1,11 @@
+
+//"SPDX-License-Identifier: UNLICENSED" 
 pragma solidity ^0.8.0;
 
 contract Greeter {
  string public greeting;
 
- constructor() public {
+ constructor() {
   greeting = 'Hello';
  }
 
