@@ -14,4 +14,26 @@ with open(".pk") as pkfile:
 with open(".infura") as infurafile:
   infuraKey=infurafile.read()
 
-print(contractText)
+compiled_sol = compile_standard({
+    "language": "Solidity",
+    "sources": {
+        "Greeter.sol": {
+            "content": contractText
+        }
+    },
+    "settings":
+        {
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "metadata", "evm.bytecode"
+                        , "evm.bytecode.sourceMap"
+                    ]
+                }
+            }
+        }
+})
+bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
+abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata'])['output']['abi']
+
+print(abi)
