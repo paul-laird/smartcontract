@@ -52,7 +52,6 @@ tx_dict = Greeter.constructor().buildTransaction({
   'nonce': nonce,
   'from':address1
 })
-print(tx_dict)
 
 signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
 #diagnostics
