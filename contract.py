@@ -58,8 +58,4 @@ if tx_receipt is None:
 #diagnostics
 #print (tx_receipt)
 
-====================================================================
-
-13: Check the contract address before calling the greet function, and construct the instance with the correct address:
-
 print("Contract address is:",tx_receipt.contractAddress)
