@@ -74,4 +74,14 @@ while tx_receipt is None and (count < 30):
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
 #diagnostics
-print (tx_receipt)
+
+print("Contract address is:",tx_receipt.contractAddress)
+
+greeter = W3.eth.contract(
+  address=tx_receipt.contractAddress,
+  abi=abi
+)
+
+
+print("Output from greet()")
+print(greeter.functions.greet().call())
