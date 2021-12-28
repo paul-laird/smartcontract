@@ -6,25 +6,35 @@ from web3.auto import w3
 from web3.providers.websocket import WebsocketProvider
 from web3 import Web3
 from solc import compile_standard
-from solcx import install_solc
-install_solc(version='latest')
-from solcx import compile_source
 
 with open("Greeter.sol") as c:
- contractText=c.read()
+  contractText=c.read()
 with open(".pk") as pkfile:
- privateKey=pkfile.read()
+  privateKey=pkfile.read()
 with open(".infura") as infurafile:
- infuraKey=infurafile.read()
+  infuraKey=infurafile.read()
 
-compiled_sol = compile_source(contractText, output_values=["abi", "bin"])
-contract_id, contract_interface = compiled_sol.popitem()
-bytecode = contract_interface['bin']
-abi = contract_interface['abi']
-
-#diagnostics
-print(abi)
-print(bytecode)
+compiled_sol = compile_standard({
+    "language": "Solidity",
+    "sources": {
+        "Greeter.sol": {
+            "content": contractText
+        }
+    },
+    "settings":
+        {
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "metadata", "evm.bytecode"
+                        , "evm.bytecode.sourceMap"
+                    ]
+                }
+            }
+        }
+})
+bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
+abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata'])['output']['abi']
 
 W3 = Web3(WebsocketProvider('wss://ropsten.infura.io/ws/v3/%s'%infuraKey))
 account1=Account.from_key(privateKey);
@@ -64,14 +74,15 @@ while tx_receipt is None and (count < 30):
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
 #diagnostics
-#print (tx_receipt)
 
 print("Contract address is:",tx_receipt.contractAddress)
 
 greeter = W3.eth.contract(
-    address=tx_receipt.contractAddress,
-    abi=abi
+  address=tx_receipt.contractAddress,
+  abi=abi
 )
+
+
 print("Output from greet()")
 print(greeter.functions.greet().call())
 
@@ -89,8 +100,8 @@ result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
-while tx_receipt is None and (count < 30):
-  time.sleep(20)
+while tx_receipt is None and (count < 300):
+  time.sleep(1)
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
   except:
