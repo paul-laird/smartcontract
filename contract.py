@@ -12,9 +12,9 @@ from solcx import compile_source
 
 with open("Greeter.sol") as c:
  contractText=c.read()
-with open(".pk") as pkfile:
+with open("../.pk") as pkfile:
  privateKey=pkfile.read()
-with open(".infura") as infurafile:
+with open("../.infura") as infurafile:
  infuraKey=infurafile.read()
 
 compiled_sol = compile_source(contractText, output_values=["abi", "bin"])
@@ -23,8 +23,8 @@ bytecode = contract_interface['bin']
 abi = contract_interface['abi']
 
 #diagnostics
-print(abi)
-print(bytecode)
+#print(abi)
+#print(bytecode)
 
 W3 = Web3(WebsocketProvider('wss://ropsten.infura.io/ws/v3/%s'%infuraKey))
 account1=Account.from_key(privateKey);
