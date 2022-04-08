@@ -55,7 +55,7 @@ tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
 while tx_receipt is None and (count < 30):
-  time.sleep(10)
+  time.sleep(2)
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
   except:
@@ -90,7 +90,7 @@ tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
 while tx_receipt is None and (count < 30):
-  time.sleep(20)
+  time.sleep(2)
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
   except:
