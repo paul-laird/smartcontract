@@ -26,7 +26,7 @@ abi = contract_interface['abi']
 #print(abi)
 #print(bytecode)
 
-W3 = Web3(WebsocketProvider('wss://goerli.infura.io/ws/v3/%s'%infuraKey))
+W3 = Web3(WebsocketProvider('wss://sepolia.infura.io/ws/v3/%s'%infuraKey))
 account1=Account.from_key(privateKey);
 address1=account1.address
 Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
