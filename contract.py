@@ -38,7 +38,7 @@ nonce = W3.eth.get_transaction_count(address1)
 tx_dict = Greeter.constructor().transact({
   'chainId': 11155111,
   'gas': 1400000,
-  'gasPrice': w3.toWei('40', 'gwei'),
+  'gasPrice': 40000000000,
   'nonce': nonce,
   'from':address1
 })
@@ -79,7 +79,7 @@ nonce = W3.eth.get_transaction_count(address1)
 tx_dict = greeter.functions.setGreeting('Nihao').transact({
   'chainId': 11155111,
   'gas': 1400000,
-  'gasPrice': w3.toWei('40', 'gwei'),
+  'gasPrice': 40000000000,
   'nonce': nonce,
   'from':address1
 })
