@@ -57,7 +57,7 @@ count = 0
 while tx_receipt is None and (count < 30):
   time.sleep(2)
   try:
-    tx_receipt = W3.eth.getTransactionReceipt(result)
+    tx_receipt = W3.eth.get_transaction_receipt(result)
   except Exception as e:
     #diagnostics
     print(e)
@@ -95,7 +95,7 @@ count = 0
 while tx_receipt is None and (count < 30):
   time.sleep(2)
   try:
-    tx_receipt = W3.eth.getTransactionReceipt(result)
+    tx_receipt = W3.eth.get_transaction_receipt(result)
   except:
     print('.')
     count +=1
