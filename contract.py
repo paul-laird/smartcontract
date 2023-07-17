@@ -58,7 +58,7 @@ while tx_receipt is None and (count < 30):
   time.sleep(2)
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
-except Exception as e:
+  except Exception as e:
     #diagnostics
     print(e)
     print('.')
