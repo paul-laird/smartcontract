@@ -58,8 +58,11 @@ while tx_receipt is None and (count < 30):
   time.sleep(2)
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
-  except:
+except Exception as e:
+    #diagnostics
+    print(e)
     print('.')
+    count +=1
 
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
@@ -95,6 +98,7 @@ while tx_receipt is None and (count < 30):
     tx_receipt = W3.eth.getTransactionReceipt(result)
   except:
     print('.')
+    count +=1
 
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
