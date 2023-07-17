@@ -47,7 +47,7 @@ signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
 #diagnostics
 #print(signed_txn)
 print("Deploying the Smart Contract")
-result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
+result = W3.eth.send_raw_transaction(signed_txn.rawTransaction)
 #diagnostics
 #print(result)
 #print('-----------------------------------')
@@ -85,7 +85,7 @@ tx_dict = greeter.functions.setGreeting('Nihao').build_transaction({
 })
 
 signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
-result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
+result = W3.eth.send_raw_transaction(signed_txn.rawTransaction)
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
