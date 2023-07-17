@@ -31,7 +31,7 @@ account1=Account.from_key(privateKey);
 address1=account1.address
 Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
 
-nonce = w3.eth.get_transaction_count(address1)
+nonce = W3.eth.get_transaction_count(address1)
 #diagnostics
 #print(nonce)
 # Submit the transaction that deploys the contract
@@ -75,7 +75,7 @@ greeter = W3.eth.contract(
 print("Output from greet()")
 print(greeter.functions.greet().call())
 
-nonce = w3.eth.get_transaction_count(address1)
+nonce = W3.eth.get_transaction_count(address1)
 tx_dict = greeter.functions.setGreeting('Nihao').buildTransaction({
   'chainId': 11155111,
   'gas': 1400000,
