@@ -35,7 +35,7 @@ nonce = W3.eth.get_transaction_count(address1)
 #diagnostics
 #print(nonce)
 # Submit the transaction that deploys the contract
-tx_dict = Greeter.constructor().buildTransaction({
+tx_dict = Greeter.constructor().transact({
   'chainId': 11155111,
   'gas': 1400000,
   'gasPrice': w3.toWei('40', 'gwei'),
@@ -76,7 +76,7 @@ print("Output from greet()")
 print(greeter.functions.greet().call())
 
 nonce = W3.eth.get_transaction_count(address1)
-tx_dict = greeter.functions.setGreeting('Nihao').buildTransaction({
+tx_dict = greeter.functions.setGreeting('Nihao').transact({
   'chainId': 11155111,
   'gas': 1400000,
   'gasPrice': w3.toWei('40', 'gwei'),
